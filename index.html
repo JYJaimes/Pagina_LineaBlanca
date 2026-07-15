@@ -337,6 +337,134 @@
             fill: white;
         }
 
+
+        /* --- MODAL DE COTIZACIÓN POR WHATSAPP --- */
+        .whatsapp-trigger {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .quote-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 20000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: rgba(0, 26, 51, 0.72);
+        }
+
+        .quote-modal.is-open {
+            display: flex;
+        }
+
+        .quote-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+        }
+
+        .quote-modal-content h2 {
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            padding-right: 35px;
+        }
+
+        .quote-modal-content .modal-description {
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .quote-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background-color: #edf6fb;
+            color: var(--primary-blue);
+            font-size: 1.7rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .quote-form-group {
+            margin-bottom: 18px;
+        }
+
+        .quote-form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .quote-form-group select,
+        .quote-form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #b8c9d6;
+            border-radius: 8px;
+            background-color: var(--white);
+            color: var(--text-color);
+            font: inherit;
+        }
+
+        .quote-form-group select:focus,
+        .quote-form-group input:focus {
+            outline: 3px solid rgba(46, 204, 113, 0.22);
+            border-color: var(--accent-green);
+        }
+
+        .conditional-field {
+            display: none;
+        }
+
+        .conditional-field.is-visible {
+            display: block;
+        }
+
+        .quote-error {
+            min-height: 24px;
+            margin-top: -7px;
+            margin-bottom: 10px;
+            color: #b42318;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .quote-submit {
+            width: 100%;
+            border: none;
+            border-radius: 50px;
+            padding: 13px 20px;
+            background-color: #25d366;
+            color: var(--white);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .quote-submit:hover {
+            background-color: #20bd5a;
+            transform: translateY(-1px);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
         /* --- Responsive (Móviles) --- */
         @media (max-width: 768px) {
             body {
@@ -375,6 +503,15 @@
                 width: 28px;
                 height: 28px;
             }
+            .quote-modal {
+                padding: 12px;
+                align-items: flex-end;
+            }
+            .quote-modal-content {
+                max-height: 92vh;
+                padding: 26px 20px 22px;
+                border-radius: 16px 16px 8px 8px;
+            }
         }
     </style>
 </head>
@@ -387,7 +524,7 @@
             </div>
             <div class="contact-info">
                 <span class="phone-number">Celular / WhatsApp: 5621052440</span>
-                <a href="https://wa.me/525621052440?text=Vi%20su%20sitio%20Web%2C%20requiero%20m%C3%A1s%20informaci%C3%B3n%20y%20costo%20de%20revisi%C3%B3n%3F" class="whatsapp-btn" target="_blank">Cotiza Ahora vía WhatsApp</a>
+                <button type="button" class="whatsapp-btn whatsapp-trigger" data-open-quote>Cotiza Ahora vía WhatsApp</button>
             </div>
         </div>
     </header>
@@ -521,11 +658,189 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/525621052440?text=Vi%20su%20sitio%20Web%2C%20requiero%20m%C3%A1s%20informaci%C3%B3n%20y%20costo%20de%20revisi%C3%B3n%3F" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <button type="button" class="whatsapp-float whatsapp-trigger" data-open-quote aria-label="Solicitar cotización por WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
-    </a>
+    </button>
+
+
+    <div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" aria-hidden="true">
+        <div class="quote-modal-content">
+            <button type="button" class="quote-modal-close" id="closeQuoteModal" aria-label="Cerrar formulario">&times;</button>
+            <h2 id="quoteModalTitle">Solicita información y costo de revisión</h2>
+            <p class="modal-description">Selecciona el tipo de equipo y su marca para preparar tu mensaje de WhatsApp.</p>
+
+            <form id="quoteForm" novalidate>
+                <div class="quote-form-group">
+                    <label for="equipmentType">Equipo</label>
+                    <select id="equipmentType" required>
+                        <option value="">Selecciona un equipo</option>
+                        <option value="Microondas">Microondas</option>
+                        <option value="Lavadora">Lavadora</option>
+                        <option value="Horno">Horno</option>
+                        <option value="Secadora">Secadora</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="quote-form-group conditional-field" id="otherEquipmentGroup">
+                    <label for="otherEquipment">Especifica el equipo</label>
+                    <input type="text" id="otherEquipment" maxlength="60" placeholder="Ej. refrigerador, aire acondicionado...">
+                </div>
+
+                <div class="quote-form-group">
+                    <label for="brandSelect">Marca</label>
+                    <select id="brandSelect" required disabled>
+                        <option value="">Primero selecciona un equipo</option>
+                    </select>
+                </div>
+
+                <div class="quote-form-group conditional-field" id="otherBrandGroup">
+                    <label for="otherBrand">Especifica la marca</label>
+                    <input type="text" id="otherBrand" maxlength="60" placeholder="Escribe la marca del equipo">
+                </div>
+
+                <p class="quote-error" id="quoteError" aria-live="polite"></p>
+                <button type="submit" class="quote-submit">Continuar en WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const whatsappNumber = '525621052440';
+        const baseMessage = 'Requiero más información y costo de revisión? Mi equipo con el que necesito ayuda es:';
+
+        const brandsByEquipment = {
+            Microondas: ['Samsung', 'LG', 'Whirlpool', 'Mabe', 'Panasonic', 'Daewoo', 'Electrolux', 'Oster', 'Otra'],
+            Lavadora: ['Whirlpool', 'Mabe', 'LG', 'Samsung', 'Maytag', 'Electrolux', 'Daewoo', 'Hisense', 'Frigidaire', 'Otra'],
+            Horno: ['Mabe', 'Whirlpool', 'Teka', 'Koblenz', 'GE', 'Electrolux', 'Samsung', 'LG', 'Otra'],
+            Secadora: ['Whirlpool', 'Maytag', 'LG', 'Samsung', 'Mabe', 'Electrolux', 'GE', 'Frigidaire', 'Otra'],
+            Otro: ['Mabe', 'Whirlpool', 'LG', 'Samsung', 'Electrolux', 'GE', 'Hisense', 'Daewoo', 'Otra']
+        };
+
+        const modal = document.getElementById('quoteModal');
+        const closeModalButton = document.getElementById('closeQuoteModal');
+        const quoteForm = document.getElementById('quoteForm');
+        const equipmentType = document.getElementById('equipmentType');
+        const brandSelect = document.getElementById('brandSelect');
+        const otherEquipmentGroup = document.getElementById('otherEquipmentGroup');
+        const otherEquipment = document.getElementById('otherEquipment');
+        const otherBrandGroup = document.getElementById('otherBrandGroup');
+        const otherBrand = document.getElementById('otherBrand');
+        const quoteError = document.getElementById('quoteError');
+        let lastFocusedElement = null;
+
+        function openQuoteModal() {
+            lastFocusedElement = document.activeElement;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            setTimeout(() => equipmentType.focus(), 0);
+        }
+
+        function closeQuoteModal() {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            quoteError.textContent = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        function updateBrands() {
+            const equipment = equipmentType.value;
+            const brands = brandsByEquipment[equipment] || [];
+
+            brandSelect.innerHTML = '';
+            otherBrand.value = '';
+            otherBrandGroup.classList.remove('is-visible');
+
+            if (!equipment) {
+                brandSelect.disabled = true;
+                brandSelect.innerHTML = '<option value="">Primero selecciona un equipo</option>';
+            } else {
+                brandSelect.disabled = false;
+                brandSelect.innerHTML = '<option value="">Selecciona una marca</option>';
+                brands.forEach((brand) => {
+                    const option = document.createElement('option');
+                    option.value = brand;
+                    option.textContent = brand;
+                    brandSelect.appendChild(option);
+                });
+            }
+
+            const isOtherEquipment = equipment === 'Otro';
+            otherEquipmentGroup.classList.toggle('is-visible', isOtherEquipment);
+            if (!isOtherEquipment) otherEquipment.value = '';
+        }
+
+        document.querySelectorAll('[data-open-quote]').forEach((button) => {
+            button.addEventListener('click', openQuoteModal);
+        });
+
+        closeModalButton.addEventListener('click', closeQuoteModal);
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) closeQuoteModal();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                closeQuoteModal();
+            }
+        });
+
+        equipmentType.addEventListener('change', updateBrands);
+
+        brandSelect.addEventListener('change', () => {
+            const isOtherBrand = brandSelect.value === 'Otra';
+            otherBrandGroup.classList.toggle('is-visible', isOtherBrand);
+            if (!isOtherBrand) otherBrand.value = '';
+        });
+
+        quoteForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            quoteError.textContent = '';
+
+            let selectedEquipment = equipmentType.value;
+            let selectedBrand = brandSelect.value;
+
+            if (!selectedEquipment) {
+                quoteError.textContent = 'Selecciona el tipo de equipo.';
+                equipmentType.focus();
+                return;
+            }
+
+            if (selectedEquipment === 'Otro') {
+                selectedEquipment = otherEquipment.value.trim();
+                if (!selectedEquipment) {
+                    quoteError.textContent = 'Escribe qué equipo necesita revisión.';
+                    otherEquipment.focus();
+                    return;
+                }
+            }
+
+            if (!selectedBrand) {
+                quoteError.textContent = 'Selecciona la marca del equipo.';
+                brandSelect.focus();
+                return;
+            }
+
+            if (selectedBrand === 'Otra') {
+                selectedBrand = otherBrand.value.trim();
+                if (!selectedBrand) {
+                    quoteError.textContent = 'Escribe la marca del equipo.';
+                    otherBrand.focus();
+                    return;
+                }
+            }
+
+            const message = `${baseMessage} ${selectedEquipment}, marca ${selectedBrand}.`;
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            closeQuoteModal();
+        });
+    </script>
 
 </body>
 </html>
