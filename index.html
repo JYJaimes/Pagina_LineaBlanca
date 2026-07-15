@@ -12,21 +12,58 @@
             box-sizing: border-box;
         }
 
+        /* Paleta de colores: el modo oscuro es el predeterminado */
+        :root {
+            --primary-blue: #8fd3ff;
+            --accent-green: #2ecc71;
+            --white: #ffffff;
+            --page-bg: #06111b;
+            --surface: #0d1f2d;
+            --surface-alt: #122b3d;
+            --header-bg: #081722;
+            --text-color: #eef7ff;
+            --muted-text: #b8c9d5;
+            --border-color: #294557;
+            --input-bg: #081722;
+            --input-text: #eef7ff;
+            --footer-bg: #030d15;
+            --hero-start: #020b12;
+            --hero-end: #0b3452;
+            --services-start: #071723;
+            --services-end: #0d2535;
+            --modal-overlay: rgba(0, 7, 13, 0.82);
+            --close-bg: #183346;
+            --shadow-color: rgba(0, 0, 0, 0.32);
+        }
+
+        body.light-mode {
+            --primary-blue: #003366;
+            --page-bg: #e6f7ff;
+            --surface: #ffffff;
+            --surface-alt: #edf6fb;
+            --header-bg: #ffffff;
+            --text-color: #333333;
+            --muted-text: #555555;
+            --border-color: #dddddd;
+            --input-bg: #ffffff;
+            --input-text: #333333;
+            --footer-bg: #003366;
+            --hero-start: #001a33;
+            --hero-end: #004d99;
+            --services-start: #e6f7ff;
+            --services-end: #ffffff;
+            --modal-overlay: rgba(0, 26, 51, 0.72);
+            --close-bg: #edf6fb;
+            --shadow-color: rgba(0, 0, 0, 0.12);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #e6f7ff;
+            color: var(--text-color);
+            background-color: var(--page-bg);
             padding-top: 120px; /* Aumentado para compensar el logo más grande */
-        }
-
-        /* Paleta de colores */
-        :root {
-            --primary-blue: #003366;
-            --light-blue-bg: #e6f7ff;
-            --accent-green: #2ecc71;
-            --white: #ffffff;
-            --text-color: #333;
+            transition: color 0.25s ease, background-color 0.25s ease;
         }
 
         /* Utilidades */
@@ -52,7 +89,7 @@
 
         /* --- Header --- */
         header {
-            background-color: var(--white);
+            background-color: var(--header-bg);
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: fixed;
@@ -98,7 +135,7 @@
 
         /* --- Hero Section --- */
         #hero {
-            background: linear-gradient(to bottom, #001a33 0%, #004d99 100%);
+            background: linear-gradient(to bottom, var(--hero-start) 0%, var(--hero-end) 100%);
             color: var(--white);
             padding: 60px 0;
             text-align: center;
@@ -146,7 +183,7 @@
         /* --- Services Section --- */
         #services {
             padding: 60px 0;
-            background: linear-gradient(to bottom, #e6f7ff 0%, #ffffff 100%);
+            background: linear-gradient(to bottom, var(--services-start) 0%, var(--services-end) 100%);
             background-image: url('placeholder-bubbles.png');
             background-size: cover;
         }
@@ -165,11 +202,11 @@
         }
 
         .service-card {
-            background-color: var(--white);
+            background-color: var(--surface);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         .service-card img {
@@ -188,13 +225,13 @@
 
         .service-card p {
             font-size: 0.95rem;
-            color: #555;
+            color: var(--muted-text);
         }
 
         /* --- Why Us / Features Section --- */
         #why-us {
             padding: 60px 0;
-            background-color: var(--white);
+            background-color: var(--surface);
         }
 
         #why-us h2 {
@@ -206,7 +243,7 @@
 
         #why-us .sub-title {
             text-align: center;
-            color: #555;
+            color: var(--muted-text);
             font-size: 1.1rem;
             margin-bottom: 40px;
         }
@@ -218,7 +255,7 @@
         }
 
         .feature-item {
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             padding: 20px;
             border-radius: 8px;
         }
@@ -231,12 +268,13 @@
 
         .feature-item p {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--muted-text);
         }
 
         /* --- Portfolio Section --- */
         #portfolio {
             padding: 60px 0;
+            background-color: var(--page-bg);
             background-image: url('placeholder-water-ice-bg.png');
             background-size: cover;
         }
@@ -256,10 +294,10 @@
         }
 
         .portfolio-item {
-            background-color: var(--white);
+            background-color: var(--surface);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         .portfolio-item img {
@@ -269,7 +307,7 @@
 
         /* --- Footer --- */
         footer {
-            background-color: var(--primary-blue);
+            background-color: var(--footer-bg);
             color: var(--white);
             padding: 60px 0;
             background-image: url('placeholder-ice-cube-pattern.png');
@@ -353,7 +391,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background-color: rgba(0, 26, 51, 0.72);
+            background-color: var(--modal-overlay);
         }
 
         .quote-modal.is-open {
@@ -366,7 +404,7 @@
             max-width: 520px;
             max-height: 90vh;
             overflow-y: auto;
-            background-color: var(--white);
+            background-color: var(--surface);
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
@@ -379,7 +417,7 @@
         }
 
         .quote-modal-content .modal-description {
-            color: #555;
+            color: var(--muted-text);
             margin-bottom: 24px;
         }
 
@@ -391,7 +429,7 @@
             height: 38px;
             border: none;
             border-radius: 50%;
-            background-color: #edf6fb;
+            background-color: var(--close-bg);
             color: var(--primary-blue);
             font-size: 1.7rem;
             line-height: 1;
@@ -413,10 +451,10 @@
         .quote-form-group input {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid #b8c9d6;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            background-color: var(--white);
-            color: var(--text-color);
+            background-color: var(--input-bg);
+            color: var(--input-text);
             font: inherit;
         }
 
@@ -465,10 +503,55 @@
             overflow: hidden;
         }
 
+        /* --- Selector de tema --- */
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 9px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            background-color: var(--surface-alt);
+            color: var(--text-color);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle:focus-visible {
+            outline: 3px solid rgba(46, 204, 113, 0.35);
+            outline-offset: 2px;
+        }
+
+        .theme-toggle-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        header,
+        #services,
+        #why-us,
+        #portfolio,
+        .service-card,
+        .portfolio-item,
+        .quote-modal-content,
+        .quote-form-group select,
+        .quote-form-group input,
+        .theme-toggle {
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
         /* --- Responsive (Móviles) --- */
         @media (max-width: 768px) {
             body {
-                padding-top: 160px; /* Más espacio en móvil si el menú colapsa */
+                padding-top: 260px; /* Compensa el encabezado con teléfono, tema y WhatsApp */
             }
             header .container {
                 flex-direction: column;
@@ -482,6 +565,11 @@
                 flex-direction: column;
                 justify-content: center;
                 gap: 10px;
+            }
+            .theme-toggle,
+            header .whatsapp-btn {
+                width: min(100%, 320px);
+                justify-content: center;
             }
             .service-grid, .features-grid, .portfolio-grid, .footer-grid {
                 grid-template-columns: 1fr;
@@ -524,6 +612,10 @@
             </div>
             <div class="contact-info">
                 <span class="phone-number">Celular / WhatsApp: 5621052440</span>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Cambiar a modo claro">
+                    <span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">☀️</span>
+                    <span id="themeToggleText">Modo claro</span>
+                </button>
                 <button type="button" class="whatsapp-btn whatsapp-trigger" data-open-quote>Cotiza Ahora vía WhatsApp</button>
             </div>
         </div>
@@ -679,7 +771,7 @@
                         <option value="Microondas">Microondas</option>
                         <option value="Lavadora">Lavadora</option>
                         <option value="Horno">Horno</option>
-                        <option value="Secadora">Secadora</option>
+                        <option value="Refrigerador">Refrigerador</option>
                         <option value="Otro">Otro</option>
                     </select>
                 </div>
@@ -708,14 +800,38 @@
     </div>
 
     <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleText = document.getElementById('themeToggleText');
+        const themeToggleIcon = document.getElementById('themeToggleIcon');
+        const savedTheme = localStorage.getItem('lineaBlancaTheme');
+
+        function updateThemeButton() {
+            const isLightMode = document.body.classList.contains('light-mode');
+            themeToggle.setAttribute('aria-pressed', String(isLightMode));
+            themeToggle.setAttribute('aria-label', isLightMode ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+            themeToggleText.textContent = isLightMode ? 'Modo oscuro' : 'Modo claro';
+            themeToggleIcon.textContent = isLightMode ? '🌙' : '☀️';
+        }
+
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        updateThemeButton();
+
+        themeToggle.addEventListener('click', () => {
+            const isLightMode = document.body.classList.toggle('light-mode');
+            localStorage.setItem('lineaBlancaTheme', isLightMode ? 'light' : 'dark');
+            updateThemeButton();
+        });
+
         const whatsappNumber = '525621052440';
         const baseMessage = 'Requiero más información y costo de revisión? Mi equipo con el que necesito ayuda es:';
 
         const brandsByEquipment = {
-            Microondas: ['Samsung', 'LG', 'Whirlpool', 'Mabe', 'Panasonic', 'Daewoo', 'Electrolux', 'Oster', 'Otra'],
+            Microondas: ['Samsung', 'LG', 'Whirlpool', 'Mabe', 'Panasonic', 'Daewoo', 'Electrolux', 'Otra'],
             Lavadora: ['Whirlpool', 'Mabe', 'LG', 'Samsung', 'Maytag', 'Electrolux', 'Daewoo', 'Hisense', 'Frigidaire', 'Otra'],
             Horno: ['Mabe', 'Whirlpool', 'Teka', 'Koblenz', 'GE', 'Electrolux', 'Samsung', 'LG', 'Otra'],
-            Secadora: ['Whirlpool', 'Maytag', 'LG', 'Samsung', 'Mabe', 'Electrolux', 'GE', 'Frigidaire', 'Otra'],
+            Refrigerador: ['Mabe', 'LG', 'Samsung', 'Whirlpool', 'Hisense', 'Daewoo', 'Electrolux', 'GE', 'Frigidaire', 'Bosch', 'Otra'],
             Otro: ['Mabe', 'Whirlpool', 'LG', 'Samsung', 'Electrolux', 'GE', 'Hisense', 'Daewoo', 'Otra']
         };
 
